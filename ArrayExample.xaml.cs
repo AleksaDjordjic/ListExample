@@ -73,7 +73,7 @@ namespace ListExample
                 return;
 
             array = new string[res];
-            CodeRun.Text = $"string[] skup = new string[{res}];\n";
+            CodeRun.Text = $"         string[] skup = new string[{res}];\n";
             SetupPreview();
         }
 
@@ -83,7 +83,22 @@ namespace ListExample
             if (CheckIndexInput(SetIndexInput.Text, out res) == false)
                 return;
 
-            //TODO: FINISH
+            if (CheckInput(SetValueInput.Text) == false)
+                return;
+
+            try
+            {
+                array[res] = SetValueInput.Text;
+                CodeRun.Text += $"         skup[{res}] = {SetValueInput.Text};\n";
+            }
+            catch (Exception ex)
+            {
+                OutputTextBox.Text += ex.ToString() + "\n";
+            }
+
+            SetIndexInput.Text = "";
+            SetValueInput.Text = "";
+            SetupPreview();
         }
 
         private void SetNull_Click(object sender, RoutedEventArgs e)
@@ -92,7 +107,17 @@ namespace ListExample
             if (CheckIndexInput(SetNullIndexInput.Text, out res) == false)
                 return;
 
-            //TODO: FINISH
+            try
+            {
+                array[res] = null;
+                CodeRun.Text += $"skup[{res}] = null;\n";
+            }
+            catch (Exception ex)
+            {
+                OutputTextBox.Text += ex.ToString() + "\n";
+            }
+
+            SetupPreview();
         }
 
         void SetupPreview()
