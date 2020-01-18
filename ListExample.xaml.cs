@@ -119,15 +119,16 @@ namespace ListExample
         void SetupPreview()
         {
             GraphicalPreviewWrapPanel.Children.Clear();
-            for (int i = 0; i < list.Count; i++)
-                GraphicalPreviewWrapPanel.Children.Add(new ListItem(i, list[i]));
+            if(list != null)
+                for (int i = 0; i < list.Count; i++)
+                    GraphicalPreviewWrapPanel.Children.Add(new ListItem(i, list[i]));
         }
 
         bool CheckInput(string input)
         {
             if (list == null)
             {
-                OutputTextBox.Text += "List<string> \"lista\" nije definisana!\n";
+                OutputTextBox.Text += "List<string> \"lista\" nije definisan!\n";
                 return false;
             }
 

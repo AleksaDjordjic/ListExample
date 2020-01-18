@@ -44,5 +44,17 @@ namespace ListExample
             new ListExampleWindow().Show();
             Close();
         }
+
+        private void Queue_Click(object sender, RoutedEventArgs e)
+        {
+            new QueueExampleWindow().Show();
+            Close();
+        }
+
+        private void Dictionary_Click(object sender, RoutedEventArgs e)
+        {
+            new DictionaryExampleWindow().Show();
+            Close();
+        }
     }
 }

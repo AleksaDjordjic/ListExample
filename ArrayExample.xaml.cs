@@ -110,7 +110,7 @@ namespace ListExample
             try
             {
                 array[res] = null;
-                CodeRun.Text += $"skup[{res}] = null;\n";
+                CodeRun.Text += $"         skup[{res}] = null;\n";
             }
             catch (Exception ex)
             {
@@ -123,15 +123,16 @@ namespace ListExample
         void SetupPreview()
         {
             GraphicalPreviewWrapPanel.Children.Clear();
-            for (int i = 0; i < array.Length; i++)
-                GraphicalPreviewWrapPanel.Children.Add(new ListItem(i, array[i]));
+            if(array != null)
+                for (int i = 0; i < array.Length; i++)
+                    GraphicalPreviewWrapPanel.Children.Add(new ListItem(i, array[i]));
         }
 
         bool CheckInput(string input)
         {
             if (array == null)
             {
-                OutputTextBox.Text += "string[] \"skup\" nije definisana!\n";
+                OutputTextBox.Text += "string[] \"skup\" nije definisan!\n";
                 return false;
             }
 

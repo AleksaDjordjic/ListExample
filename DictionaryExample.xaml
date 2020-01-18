@@ -1,4 +1,4 @@
-﻿<Window x:Class="ListExample.ArrayExampleWindow"
+﻿<Window x:Class="ListExample.DictionaryExampleWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,11 +11,11 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="{MaterialDesign:MaterialDesignFont}"
-        Title="type[] Example" Height="800" Width="1400" ResizeMode="CanResizeWithGrip" WindowStyle="None" AllowsTransparency="True">
+        Title="System.Collections.Generic.Dictionary&lt;T&gt; Example" Height="800" Width="1400" ResizeMode="CanResizeWithGrip" WindowStyle="None" AllowsTransparency="True">
     <DockPanel LastChildFill="True" Background="#404040">
         <!-- Top Bar -->
         <Canvas DockPanel.Dock="Top" MouseDown="TopBar_MouseDown" Background="#FF212121" VerticalAlignment="Top" Height="28">
-            <TextBlock FontSize="18" Name="Title" Text="type[] Example" Canvas.Top="3" Canvas.Left="9" FontWeight="Bold"/>
+            <TextBlock FontSize="18" Name="Title" Text="System.Collections.Generic.Dictionary&lt;T&gt; Example" Canvas.Top="3" Canvas.Left="9" FontWeight="Bold"/>
             <Button Canvas.Right="0" Width="36" Height="28" Background="{x:Null}" BorderBrush="{x:Null}" Click="Close_Click">
                 <MaterialDesign:PackIcon Kind="WindowClose" Foreground="White" Margin="-14,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             </Button>
@@ -43,6 +43,8 @@
             <FlowDocumentScrollViewer Margin="50,0,0,0">
                 <FlowDocument FontFamily="{MaterialDesign:MaterialDesignFont}" TextElement.FontWeight="Medium" TextElement.FontSize="14">
                     <Paragraph>using System;
+                        <LineBreak/>
+                        using System.Collections.Generic;
                         <LineBreak/>
                         <LineBreak/>
                         class Program
@@ -73,47 +75,64 @@
                 </ScrollViewer>
             </Grid>
             <Grid>
-                <TextBlock VerticalAlignment="Top" FontSize="32" FontWeight="Bold" Text="type[] arrayName;" Foreground="White" Margin="10"/>
+                <TextBlock VerticalAlignment="Top" FontSize="32" FontWeight="Bold" Text="System.Collections.Generic.Dictionary&lt;T&gt;" Foreground="White" Margin="10"/>
 
                 <StackPanel TextElement.FontSize="18" TextElement.Foreground="White" Margin="10, 60, 10, 10" Height="Auto" VerticalAlignment="Top">
                     <StackPanel Orientation="Horizontal" Margin="0,3">
                         <Button Click="Generate_Click" Content="Execute" Margin="0,0,10,0" Width="80" Background="#303030" BorderBrush="#303030" Foreground="White"/>
-                        <TextBlock Text="string[] skup = new string[" VerticalAlignment="Center"/>
-                        <TextBox Name="GenerateSizeInput" MinWidth="20" AcceptsReturn="False" Background="#0FF0F0F0" BorderBrush="{x:Null}" Foreground="White"/>
-                        <TextBlock Text="];" VerticalAlignment="Center"/>
+                        <TextBlock Text="Dictionary&lt;int, string&gt; dictionary = new Dictionary&lt;int, string&gt;();" VerticalAlignment="Center"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,3">
-                        <Button Click="Set_Click" Content="Execute" Margin="0,0,10,0" Width="80" Background="#303030" BorderBrush="#303030" Foreground="White"/>
-                        <TextBlock Text="skup[" VerticalAlignment="Center"/>
-                        <TextBox Name="SetIndexInput" MinWidth="20" AcceptsReturn="False" Background="#0FF0F0F0" BorderBrush="{x:Null}" Foreground="White"/>
-                        <TextBlock Text="] = &quot;" VerticalAlignment="Center"/>
-                        <TextBox Name="SetValueInput" MinWidth="20" AcceptsReturn="False" Background="#0FF0F0F0" BorderBrush="{x:Null}" Foreground="White"/>
-                        <TextBlock Text="&quot;;" VerticalAlignment="Center"/>
+                        <Button Click="Add_Click" Content="Execute" Margin="0,0,10,0" Width="80" Background="#303030" BorderBrush="#303030" Foreground="White"/>
+                        <TextBlock Text="dictionary.Add(" VerticalAlignment="Center"/>
+                        <TextBox x:Name="AddKeyInput" MinWidth="20" AcceptsReturn="False" Background="#0FF0F0F0" BorderBrush="{x:Null}" Foreground="White"/>
+                        <TextBlock Text=", &quot;" VerticalAlignment="Center"/>
+                        <TextBox x:Name="AddInput" MinWidth="20" AcceptsReturn="False" Background="#0FF0F0F0" BorderBrush="{x:Null}" Foreground="White"/>
+                        <TextBlock Text="&quot;);" VerticalAlignment="Center"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,3">
-                        <Button Click="SetNull_Click" Content="Execute" Margin="0,0,10,0" Width="80" Background="#303030" BorderBrush="#303030" Foreground="White"/>
-                        <TextBlock Text="skup[" VerticalAlignment="Center"/>
-                        <TextBox Name="SetNullIndexInput" MinWidth="20" AcceptsReturn="False" Background="#0FF0F0F0" BorderBrush="{x:Null}" Foreground="White"/>
-                        <TextBlock Text="] = null;" VerticalAlignment="Center"/>
+                        <Button Click="Remove_Click" Content="Execute" Margin="0,0,10,0" Width="80" Background="#303030" BorderBrush="#303030" Foreground="White"/>
+                        <TextBlock Text="dictionary.Remove(" VerticalAlignment="Center"/>
+                        <TextBox Name="RemoveKeyInput" MinWidth="20" AcceptsReturn="False" Background="#0FF0F0F0" BorderBrush="{x:Null}" Foreground="White"/>
+                        <TextBlock Text=");" VerticalAlignment="Center"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,3">
-                        <Button Click="WriteAtIndex_Click" Content="Execute" Margin="0,0,10,0" Width="80" Background="#303030" BorderBrush="#303030" Foreground="White"/>
-                        <TextBlock Text="Console.WriteLine( skup[" VerticalAlignment="Center"/>
-                        <TextBox Name="IndexInput" MinWidth="20" AcceptsReturn="False" Background="#0FF0F0F0" BorderBrush="{x:Null}" Foreground="White"/>
+                        <Button Click="ContainsKey_Click" Content="Execute" Margin="0,0,10,0" Width="80" Background="#303030" BorderBrush="#303030" Foreground="White"/>
+                        <TextBlock Text="Console.WriteLine( dictionary.ContainsKey(" VerticalAlignment="Center"/>
+                        <TextBox Name="ContainsKeyInput" MinWidth="20" AcceptsReturn="False" Background="#0FF0F0F0" BorderBrush="{x:Null}" Foreground="White"/>
+                        <TextBlock Text=") );" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,3">
+                        <Button Click="ContainsValue_Click" Content="Execute" Margin="0,0,10,0" Width="80" Background="#303030" BorderBrush="#303030" Foreground="White"/>
+                        <TextBlock Text="Console.WriteLine( dictionary.ContainsValue(&quot;" VerticalAlignment="Center"/>
+                        <TextBox Name="ContainsValueInput" MinWidth="20" AcceptsReturn="False" Background="#0FF0F0F0" BorderBrush="{x:Null}" Foreground="White"/>
+                        <TextBlock Text="&quot;) );" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,3">
+                        <Button Click="WriteAtKey_Click" Content="Execute" Margin="0,0,10,0" Width="80" Background="#303030" BorderBrush="#303030" Foreground="White"/>
+                        <TextBlock Text="Console.WriteLine( dictionary[" VerticalAlignment="Center"/>
+                        <TextBox Name="WriteAtKeyInput" MinWidth="20" AcceptsReturn="False" Background="#0FF0F0F0" BorderBrush="{x:Null}" Foreground="White"/>
                         <TextBlock Text="] );" VerticalAlignment="Center"/>
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                    <StackPanel Orientation="Horizontal" Margin="0,3">
+                        <Button Click="Clear_Click" Content="Execute" Margin="0,0,10,0" Width="80" Background="#303030" BorderBrush="#303030" Foreground="White"/>
+                        <TextBlock Text="dictionary.Clear();" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <Button Click="Reset_Click" Content="Execute" Margin="0,0,10,0" Width="80" Background="#303030" BorderBrush="#303030" Foreground="White"/>
                         <TextBlock Text="Reset" VerticalAlignment="Center"/>
                     </StackPanel>
                 </StackPanel>
 
-                <TextBlock Text="Array Graphical Preview" Margin="10,317,0,0" VerticalAlignment="Top"/>
-                <Border Margin="10,334,10,10" BorderBrush="#303030" BorderThickness="3">
+                <TextBlock Text="Dictionary Graphical Preview" Margin="10,365,0,0" VerticalAlignment="Top"/>
+                <Border Margin="10,382,10,10" BorderBrush="#303030" BorderThickness="3">
                     <ScrollViewer>
                         <WrapPanel Name="GraphicalPreviewWrapPanel"/>
                     </ScrollViewer>

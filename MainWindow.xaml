@@ -30,8 +30,8 @@
         <StackPanel Margin="5">
             <Button Margin="5,5" Content="Array" Foreground="White" Click="Array_Click"/>
             <Button Margin="5,5" Content="List" Foreground="White" Click="List_Click"/>
-            <Button Margin="5,5" Content="Queue" Foreground="White"/>
-            <Button Margin="5,5" Content="Dictionary" Foreground="White"/>
+            <Button Margin="5,5" Content="Queue" Foreground="White" Click="Queue_Click"/>
+            <Button Margin="5,5" Content="Dictionary" Foreground="White" Click="Dictionary_Click"/>
         </StackPanel>
     </DockPanel>
 </Window>
